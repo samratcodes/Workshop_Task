@@ -1,0 +1,40 @@
+// UserManual.js
+
+import React, { useState } from 'react';
+
+const Section = ({ title, content }) => (
+  <div>
+    <h2>{title}</h2>
+    <p>{content}</p>
+  </div>
+);
+
+const UserManual = () => {
+  const [currentSection, setCurrentSection] = useState(0);
+
+  const sections = [
+    { title: "Getting Started", content: "Welcome to our application! Follow these instructions to get started..." },
+    { title: "Features", content: "Here are the main features of our application..." },
+    { title: "FAQ", content: "Frequently Asked Questions..." },
+    // Add more sections as needed
+  ];
+
+  const nextSection = () => {
+    setCurrentSection(currentSection + 1);
+  };
+
+  const prevSection = () => {
+    setCurrentSection(currentSection - 1);
+  };
+
+  return (
+    <div>
+      <h1>User Manual</h1>
+      <Section title={sections[currentSection].title} content={sections[currentSection].content} />
+      <button onClick={prevSection} disabled={currentSection === 0}>Previous</button>
+      <button onClick={nextSection} disabled={currentSection === sections.length - 1}>Next</button>
+    </div>
+  );
+};
+
+export default UserManual;
